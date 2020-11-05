@@ -20,7 +20,7 @@ mollierHxDiagram(
 )
 }
 \arguments{
-\item{data}{Dataset to use for scatter plot. Must be a data.frame with "time, temperature °C, humidity \%rH"}
+\item{data}{Dataset to use for scatter plot. Must be a data.frame with "datetime, temperature °C, humidity \%rH"}
 
 \item{graphTempMin}{Graph temperature minimum on y-axis in °C, default 15.0}
 
@@ -48,7 +48,7 @@ mollierHxDiagram(
 
 }
 \description{
-Creates D3 Mollier hx Diagram
+Creates D3 Mollier hx Diagram with scatter plot and comfort zone
 }
 \examples{
 library(redutils)
