@@ -1,6 +1,6 @@
 Package: redutils
 Title: A package with utilities for energy data analysis
-Version: 0.0.0.9000
+Version: 0.0.1
 Author: person("Reto", "Marek", email = "reto@marek.li", role = c("aut", "cre"))
 Maintainer: Reto Marek <reto@marek.li>
 Description: This package includes helpful functions which are commonly used for energy data analysis.
