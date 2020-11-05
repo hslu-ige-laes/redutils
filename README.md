@@ -17,7 +17,7 @@ library(devtools)
 
 # install library
 # close first all R Studio Projects
-devtools::install_github("hslu-ige-laes/redutils", ref = "master")
+devtools::install_github("hslu-ige-laes/redutils")
 ```
 ## Package creation hints
 - Update documentation with `document()`
