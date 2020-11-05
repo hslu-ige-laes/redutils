@@ -1,6 +1,6 @@
 # redutils - R Energy Data Utilities
 
-This package provides utilities respectively helper functions to analyze and visualize energy data.
+This package provides tools to analyze and visualize energy data.
 - season(date): Get the season name out of a date
 - mollierHxDiagram(data): Creates D3 Mollier hx Diagram with scatter plot and comfort zone
 
