@@ -1,5 +1,5 @@
 Package: redutils
-Title: A package with utilities for energy data analysis
+Title: Tools to analyze and visualize energy data
 Version: 0.0.1
 Author: person("Reto", "Marek", email = "reto@marek.li", role = c("aut", "cre"))
 Maintainer: Reto Marek <reto@marek.li>
