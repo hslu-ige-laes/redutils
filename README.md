@@ -4,10 +4,6 @@ This package provides utilities respectively helper functions to analyze and vis
 - season(date): Get the season name out of a date
 - mollierHxDiagram(data): Creates D3 Mollier hx Diagram with scatter plot and comfort zone
 
-## Author ##
-
-Reto Marek
-
 ## Installation in R ##
 
 ```r
