@@ -6,7 +6,9 @@ Maintainer: Reto Marek <reto@marek.li>
 Description: This package includes helpful functions which are commonly used for energy data analysis.
 License: CC0
 Imports: 
-    lubridate
+    lubridate,
+    dplyr,
+    r2d3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
