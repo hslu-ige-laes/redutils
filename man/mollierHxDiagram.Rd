@@ -14,7 +14,7 @@ mollierHxDiagram(
   cmfZoneTempMin = 21,
   cmfZoneTempMax = 26,
   cmfZoneHumRelMin = 30,
-  cmfZoneHumRelMax = 50,
+  cmfZoneHumRelMax = 65,
   cmfZoneHumAbsMin = 0,
   cmfZoneHumAbsMax = 0.012
 )
@@ -38,7 +38,7 @@ mollierHxDiagram(
 
 \item{cmfZoneHumRelMin}{Comfort zone humidity minimum in \%rH, default 30.0}
 
-\item{cmfZoneHumRelMax}{Comfort zone humidity maximum in \%rH, default 50.0}
+\item{cmfZoneHumRelMax}{Comfort zone humidity maximum in \%rH, default 65.0}
 
 \item{cmfZoneHumAbsMin}{Comfort zone humidity minimum in kg/kg, default 0.0}
 

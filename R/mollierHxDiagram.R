@@ -7,7 +7,7 @@ mollierHxDiagram <- function(data,
                              cmfZoneTempMin = 21.0,
                              cmfZoneTempMax = 26.0,
                              cmfZoneHumRelMin = 30.0,
-                             cmfZoneHumRelMax = 50.0,
+                             cmfZoneHumRelMax = 65.0,
                              cmfZoneHumAbsMin = 0.0,
                              cmfZoneHumAbsMax = 0.012){
   #' D3 Mollier hx Diagram
@@ -22,7 +22,7 @@ mollierHxDiagram <- function(data,
   #' @param cmfZoneTempMin Comfort zone temperature minimum in °C, default 21.0
   #' @param cmfZoneTempMax Comfort zone temperature maximum in °C, default 26.0
   #' @param cmfZoneHumRelMin Comfort zone humidity minimum in %rH, default 30.0
-  #' @param cmfZoneHumRelMax Comfort zone humidity maximum in %rH, default 50.0
+  #' @param cmfZoneHumRelMax Comfort zone humidity maximum in %rH, default 65.0
   #' @param cmfZoneHumAbsMin Comfort zone humidity minimum in kg/kg, default 0.0
   #' @param cmfZoneHumAbsMax Comfort zone humidity maximum in kg/kg, default 0.012. Also called sultriness limit (de: Schwülgrenze)
   #'
