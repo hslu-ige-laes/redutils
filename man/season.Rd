@@ -9,7 +9,7 @@ season(x, seasons = c("Winter", "Spring", "Summer", "Fall"))
 \arguments{
 \item{x}{a POSIXct, POSIXlt, Date, chron, yearmon, yearqtr, zoo, zooreg, timeDate, xts, its, ti, jul, timeSeries, or fts object..}
 
-\item{seasons}{list of seasons, default c("Winter","Spring","Summer","Fall")}
+\item{seasons}{concatenated strings with 4 seasons, default c("Winter","Spring","Summer","Fall")}
 }
 \value{
 Returns the corresponding season.
