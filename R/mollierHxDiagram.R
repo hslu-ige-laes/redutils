@@ -13,14 +13,14 @@ mollierHxDiagram <- function(data,
   #' D3 Mollier hx Diagram
   #'
   #' Creates D3 Mollier hx Diagram with scatter plot and comfort zone
-  #' @param data 	Dataset to use for scatter plot. Must be a data.frame with "datetime, temperature °C, humidity %rH"
-  #' @param graphTempMin Graph temperature minimum on y-axis in °C, default 15.0
-  #' @param graphTempMax Graph temperature maximum on y-axis in °C, default 30.0
+  #' @param data 	Dataset to use for scatter plot. Must be a data.frame with "datetime, temperature degree celsius, humidity %rH"
+  #' @param graphTempMin Graph temperature minimum on y-axis in degree celsius, default 15.0
+  #' @param graphTempMax Graph temperature maximum on y-axis in degree celsius, default 30.0
   #' @param graphHumAbsMin Graph humidity minimum on x-axis in kg/kg, default 0.0
   #' @param graphHumAbsMax Graph humidity maximun on x-axis in kg/kg, default 0.017
   #' @param altitude Altitude in meters above sea level to calculate pressure, default 450
-  #' @param cmfZoneTempMin Comfort zone temperature minimum in °C, default 21.0
-  #' @param cmfZoneTempMax Comfort zone temperature maximum in °C, default 26.0
+  #' @param cmfZoneTempMin Comfort zone temperature minimum in degree celsius, default 21.0
+  #' @param cmfZoneTempMax Comfort zone temperature maximum in degree celsius, default 26.0
   #' @param cmfZoneHumRelMin Comfort zone humidity minimum in %rH, default 30.0
   #' @param cmfZoneHumRelMax Comfort zone humidity maximum in %rH, default 65.0
   #' @param cmfZoneHumAbsMin Comfort zone humidity minimum in kg/kg, default 0.0
@@ -35,6 +35,23 @@ mollierHxDiagram <- function(data,
   #' data <- readRDS(system.file("sampleData/flatTempHum.rds", package = "redutils"))
   #' mollierHxDiagram(data)
   #'
+  require(r2d3)
+  require(checkmate)
+
+  # function argument checks
+  assertNumber(graphTempMin, lower = -40, upper = graphTempMax)
+  assertNumber(graphTempMax, lower = graphTempMin, upper = 60)
+  assertNumber(graphHumAbsMin, lower = 0, upper = graphHumAbsMax)
+  assertNumber(graphHumAbsMax, lower = graphHumAbsMin, upper = 0.1)
+  assertNumber(altitude, lower = 0, upper = 8000)
+  assertNumber(cmfZoneTempMin, lower = 10, upper = cmfZoneTempMax)
+  assertNumber(cmfZoneTempMax, lower = cmfZoneTempMin, upper = 30)
+  assertNumber(cmfZoneHumRelMin, lower = 0, upper = cmfZoneHumRelMax)
+  assertNumber(cmfZoneHumRelMax, lower = cmfZoneHumRelMin, upper = 100)
+  assertNumber(cmfZoneHumAbsMin, lower = 0, upper = cmfZoneHumAbsMax)
+  assertNumber(cmfZoneHumAbsMax, lower = cmfZoneHumAbsMin, upper = 0.1)
+
+  # function code
   names(data) <- c("time", "temperature", "humidity")
   data <- data %>% mutate(season = redutils::season(time))
 

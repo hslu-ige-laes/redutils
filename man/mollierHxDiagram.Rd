@@ -20,11 +20,11 @@ mollierHxDiagram(
 )
 }
 \arguments{
-\item{data}{Dataset to use for scatter plot. Must be a data.frame with "datetime, temperature °C, humidity \%rH"}
+\item{data}{Dataset to use for scatter plot. Must be a data.frame with "datetime, temperature degree celsius, humidity \%rH"}
 
-\item{graphTempMin}{Graph temperature minimum on y-axis in °C, default 15.0}
+\item{graphTempMin}{Graph temperature minimum on y-axis in degree celsius, default 15.0}
 
-\item{graphTempMax}{Graph temperature maximum on y-axis in °C, default 30.0}
+\item{graphTempMax}{Graph temperature maximum on y-axis in degree celsius, default 30.0}
 
 \item{graphHumAbsMin}{Graph humidity minimum on x-axis in kg/kg, default 0.0}
 
@@ -32,9 +32,9 @@ mollierHxDiagram(
 
 \item{altitude}{Altitude in meters above sea level to calculate pressure, default 450}
 
-\item{cmfZoneTempMin}{Comfort zone temperature minimum in °C, default 21.0}
+\item{cmfZoneTempMin}{Comfort zone temperature minimum in degree celsius, default 21.0}
 
-\item{cmfZoneTempMax}{Comfort zone temperature maximum in °C, default 26.0}
+\item{cmfZoneTempMax}{Comfort zone temperature maximum in degree celsius, default 26.0}
 
 \item{cmfZoneHumRelMin}{Comfort zone humidity minimum in \%rH, default 30.0}
 
