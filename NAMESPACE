@@ -2,3 +2,4 @@
 
 export(mollierHxDiagram)
 export(season)
+export(typEleConsHousehold)
