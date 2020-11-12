@@ -1,9 +1,9 @@
 Package: redutils
-Title: Tools to analyze and visualize energy data
+Title: Utilities to analyze and visualize energy data in R
 Version: 0.0.2
 Author: person("Reto", "Marek", email = "reto.marek@hslu.ch", role = c("aut", "cre"))
 Maintainer: Reto Marek <reto.marek@hslu.ch>
-Description: This package includes helpful functions which are commonly used for energy data analysis.
+Description: The goal of redutils is to provide useful functions and plots to analyze and visualize energy- and comfort related data.
 License: GPL-3 + file LICENSE
 Imports: 
     lubridate,
@@ -17,3 +17,4 @@ RoxygenNote: 7.1.1
 URL: https://github.com/hslu-ige-laes/redutils
 Suggests: 
     testthat
+Depends: R (>= 3.5.0)
