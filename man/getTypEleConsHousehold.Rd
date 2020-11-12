@@ -9,7 +9,7 @@ getTypEleConsHousehold(
   rooms = NULL,
   bldgType = "single",
   dishwasher = "classic",
-  freezer = "classic",
+  freezer = "none",
   cookingBaking = "normal",
   effLighting = "mix",
   dryer = "classic",
@@ -27,7 +27,7 @@ getTypEleConsHousehold(
 
 \item{dishwasher}{type of dishwasher (\code{"none"}, \code{"classic"} or \code{"hotWaterSupply"}, default \code{"classic"})}
 
-\item{freezer}{type of freezer (\code{"none"} or \code{"classic"}, default \code{"classic"})}
+\item{freezer}{type of freezer (\code{"none"} or \code{"classic"}, default \code{"none"})}
 
 \item{cookingBaking}{cooking and baking behaviour (\code{"occasionally"}, \code{"normal"} or \code{"intensive"}, default \code{"normal"})}
 
@@ -37,7 +37,7 @@ getTypEleConsHousehold(
 
 \item{laundry}{type of laundry machine (\code{"none"}, \code{"classic"} or \code{"hotWaterSupply"}, default \code{"classic"})}
 
-\item{waterHeater}{type of water heater (\code{"none"}, \code{"electric"} or \code{"heatpump"}, default \code{"none"})}
+\item{waterHeater}{type of water heater (\code{"none"}, \code{"electric"} or \code{"heatPump"}, default \code{"none"})}
 
 \item{eleCommon}{common electricity (\code{"included"} or \code{"excluded"}, default \code{"excluded"})}
 }
@@ -119,7 +119,7 @@ Common electricity (building equipment, common lighting):
 }
 \examples{
 # single family house
-getTypEleConsHousehold(occupants=3, rooms=5.5, bldgType="single", waterHeater="heatpump", eleCommon="included")
+getTypEleConsHousehold(occupants=3, rooms=5.5, bldgType="single", waterHeater="heatPump", eleCommon="included")
 
 # flat in a multi family house
 getTypEleConsHousehold(occupants=3, rooms=4.5, bldgType="multi", freezer="none", eleCommon="excluded")
