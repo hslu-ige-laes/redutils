@@ -2,7 +2,7 @@ getTypEleConsHousehold <- function(occupants = 3.0,
                                    rooms = NULL,
                                    bldgType = "single",
                                    dishwasher = "classic",
-                                   freezer = "classic",
+                                   freezer = "none",
                                    cookingBaking = "normal",
                                    effLighting = "mix",
                                    dryer = "classic",
@@ -17,12 +17,12 @@ getTypEleConsHousehold <- function(occupants = 3.0,
   #' @param rooms numeric number of rooms, minimum 1, maximum 9, defaul NULL and internally assumed by the number of occupants
   #' @param bldgType type of building, single family house or multi dwelling untit (\code{"single"} or \code{"multi"}, default \code{"multi"})
   #' @param dishwasher type of dishwasher (\code{"none"}, \code{"classic"} or \code{"hotWaterSupply"}, default \code{"classic"})
-  #' @param freezer type of freezer (\code{"none"} or \code{"classic"}, default \code{"classic"})
+  #' @param freezer type of freezer (\code{"none"} or \code{"classic"}, default \code{"none"})
   #' @param cookingBaking cooking and baking behaviour (\code{"occasionally"}, \code{"normal"} or \code{"intensive"}, default \code{"normal"})
   #' @param effLighting energy efficient lighting (\code{"minority"}, \code{"mix"} or \code{"majority"}, default \code{"mix"})
   #' @param dryer type of clothing dryer (\code{"none"}, \code{"roomAir"}, \code{"heatPump"} or \code{"classic"}, default \code{"classic"})
   #' @param laundry type of laundry machine (\code{"none"}, \code{"classic"} or \code{"hotWaterSupply"}, default \code{"classic"})
-  #' @param waterHeater type of water heater (\code{"none"}, \code{"electric"} or \code{"heatpump"}, default \code{"none"})
+  #' @param waterHeater type of water heater (\code{"none"}, \code{"electric"} or \code{"heatPump"}, default \code{"none"})
   #' @param eleCommon common electricity (\code{"included"} or \code{"excluded"}, default \code{"excluded"})
   #'
   #' @return Returns a typical electricity consumtion of a comparable Swiss household in kWh/year.
@@ -82,7 +82,7 @@ getTypEleConsHousehold <- function(occupants = 3.0,
   #' @export
   #' @examples
   #' # single family house
-  #' getTypEleConsHousehold(occupants=3, rooms=5.5, bldgType="single", waterHeater="heatpump", eleCommon="included")
+  #' getTypEleConsHousehold(occupants=3, rooms=5.5, bldgType="single", waterHeater="heatPump", eleCommon="included")
   #'
   #' # flat in a multi family house
   #' getTypEleConsHousehold(occupants=3, rooms=4.5, bldgType="multi", freezer="none", eleCommon="excluded")
@@ -97,7 +97,7 @@ getTypEleConsHousehold <- function(occupants = 3.0,
   checkmate::assertChoice(effLighting, c("minority", "mix", "majority"))
   checkmate::assertChoice(dryer, c("none", "roomAir", "heatPump", "classic"))
   checkmate::assertChoice(laundry, c("none", "classic", "hotWaterSupply"))
-  checkmate::assertChoice(waterHeater, c("none", "electric", "heatpump"))
+  checkmate::assertChoice(waterHeater, c("none", "electric", "heatPump"))
   checkmate::assertChoice(eleCommon, c("included", "excluded"))
 
   bldgTypeInput <- bldgType
@@ -155,7 +155,7 @@ getTypEleConsHousehold <- function(occupants = 3.0,
 
   # dryer
   switch(dryer,
-         none = {value <- value - (table$dryerCorrVal)},
+         none = {value <- value - ((table$laundryCorrVal + table$dryerCorrVal) * 0.5)},
          roomAir = {value <- value - ((table$laundryCorrVal + table$dryerCorrVal) * 0.25)},
          heatPump = {value <- value - ((table$laundryCorrVal + table$dryerCorrVal) * 0.25)},
          classic = {value <- value}
