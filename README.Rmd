@@ -78,11 +78,12 @@ Hint: varoius settings can get changed via function arguments.
 ### plotMollierHxDiagram()
 Plot a D3 Mollier hx Diagram with scatter plot and comfort zone.
 
-```{r example plotMollierHxDiagram, warning=FALSE, message=FALSE}
+```{r example plotMollierHxDiagram, eval = FALSE}
 library(redutils)
 data <- readRDS(system.file("sampleData/flatTempHum.rds", package = "redutils"))
 plotMollierHx(data)
 ```
+<img src="inst/mollierHxDiagram/example.png" class="illustration" width=600/>
 
 Hint: varoius settings can get changed via function arguments.
 

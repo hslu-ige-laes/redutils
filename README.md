@@ -86,7 +86,7 @@ data <- readRDS(system.file("sampleData/flatTempHum.rds", package = "redutils"))
 plotMollierHx(data)
 ```
 
-<img src="man/figures/README-example plotMollierHxDiagram-1.png" width="100%" />
+<img src="inst/mollierHxDiagram/example.png" class="illustration" width=600/>
 
 Hint: varoius settings can get changed via function arguments.
 
