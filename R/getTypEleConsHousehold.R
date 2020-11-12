@@ -1,20 +1,20 @@
-typEleConsHousehold <- function(occupants = 3.0,
-                                rooms = 4.5,
-                                bldgType = "single",
-                                dishwasher = "classic",
-                                freezer = "classic",
-                                cookingBaking = "normal",
-                                effLighting = "mix",
-                                dryer = "classic",
-                                laundry = "classic",
-                                waterHeater = "none",
-                                eleCommon = "excluded"
-                                ){
-  #' Get typical household electricity consumption
+getTypEleConsHousehold <- function(occupants = 3.0,
+                                   rooms = NULL,
+                                   bldgType = "single",
+                                   dishwasher = "classic",
+                                   freezer = "classic",
+                                   cookingBaking = "normal",
+                                   effLighting = "mix",
+                                   dryer = "classic",
+                                   laundry = "classic",
+                                   waterHeater = "none",
+                                   eleCommon = "excluded"
+                                   ){
+  #' Get typical electricity consumption of a household
   #'
-  #' Get a typical electricity consumption of a Swiss household in kWh/year.
+  #' Get a typical electricity consumption of a household in kWh/year. This is useful to compare a real dataset with a typical consumption value.
   #' @param occupants numeric number of occupants, minimum 1, maximum 6
-  #' @param rooms numeric number of rooms, minimum 1, maximum 9
+  #' @param rooms numeric number of rooms, minimum 1, maximum 9, defaul NULL and internally assumed by the number of occupants
   #' @param bldgType type of building, single family house or multi dwelling untit (\code{"single"} or \code{"multi"}, default \code{"multi"})
   #' @param dishwasher type of dishwasher (\code{"none"}, \code{"classic"} or \code{"hotWaterSupply"}, default \code{"classic"})
   #' @param freezer type of freezer (\code{"none"} or \code{"classic"}, default \code{"classic"})
@@ -77,48 +77,56 @@ typEleConsHousehold <- function(occupants = 3.0,
   #' - included: e.g. for single family houses with main meter
   #' - excluded:  e.g. for multi family houses where the meter of the flat gets analyzed. Normally the common electricity is measured by a separate meter.
   #'
+  #' @importFrom checkmate assertNumber assertChoice
+  #' @import dplyr
   #' @export
   #' @examples
   #' # single family house
-  #' typEleConsHousehold(occupants = 3, rooms = 5.5, bldgType = "single", waterHeater = "heatpump", eleCommon = "included")
+  #' getTypEleConsHousehold(occupants=3, rooms=5.5, bldgType="single", waterHeater="heatpump", eleCommon="included")
   #'
   #' # flat in a multi family house
-  #' typEleConsHousehold(occupants = 3, rooms = 4.5, bldgType = "multi", freezer = "none", eleCommon = "excluded")
+  #' getTypEleConsHousehold(occupants=3, rooms=4.5, bldgType="multi", freezer="none", eleCommon="excluded")
 
   require(dplyr)
   require(checkmate)
 
   # function argument checks
-  assertCount(occupants)
-  assertNumber(occupants, lower = 1.0, upper = 6.0)
-  assertCount(rooms)
-  assertNumber(rooms, lower = 1.0, upper = 9.0)
-  assertChoice(bldgType, c("single", "multi"))
-  assertChoice(dishwasher, c("none", "classic", "hotWaterSupply"))
-  assertChoice(freezer, c("none", "classic"))
-  assertChoice(cookingBaking, c("occasionally", "normal", "intensive"))
-  assertChoice(effLighting, c("minority", "mix", "majority"))
-  assertChoice(dryer, c("none", "roomAir", "heatPump", "classic"))
-  assertChoice(laundry, c("none", "classic", "hotWaterSupply"))
-  assertChoice(waterHeater, c("none", "electric", "heatpump"))
-  assertChoice(eleCommon, c("included", "excluded"))
+  checkmate::assertNumber(occupants, lower = 1.0, upper = 6.0)
+  checkmate::assertNumber(rooms, lower = 1.0, upper = 9.0, null.ok = TRUE)
+  checkmate::assertChoice(bldgType, c("single", "multi"))
+  checkmate::assertChoice(dishwasher, c("none", "classic", "hotWaterSupply"))
+  checkmate::assertChoice(freezer, c("none", "classic"))
+  checkmate::assertChoice(cookingBaking, c("occasionally", "normal", "intensive"))
+  checkmate::assertChoice(effLighting, c("minority", "mix", "majority"))
+  checkmate::assertChoice(dryer, c("none", "roomAir", "heatPump", "classic"))
+  checkmate::assertChoice(laundry, c("none", "classic", "hotWaterSupply"))
+  checkmate::assertChoice(waterHeater, c("none", "electric", "heatpump"))
+  checkmate::assertChoice(eleCommon, c("included", "excluded"))
 
   bldgTypeInput <- bldgType
-  occupantsInput <- min(6.0, max(1.0, as.numeric(occupants)))
+  occupantsInput <- base::min(6.0, base::max(1.0, base::as.numeric(occupants)))
+  occupantsInput <- base::round(occupantsInput/0.5)*0.5
 
   # read table with values
-  table <- read.csv2(system.file("sampleData/typicalHousholdPowerConsumption.csv", package = "redutils"), stringsAsFactors = FALSE, dec = ".")
-  table <- table %>% filter(bldgType == bldgTypeInput) %>% filter(occupants == occupantsInput)
+  table <- utils::read.csv2(base::system.file("sampleData/typicalHousholdPowerConsumption.csv", package = "redutils"), stringsAsFactors = FALSE, dec = ".")
+  table <- table %>% dplyr::filter(bldgType == bldgTypeInput) %>% dplyr::filter(occupants == occupantsInput)
+
+  # if no rooms is NULL take the default of the table, else round the input
+  if(is.null(rooms)){
+    rooms <- base::as.numeric(table %>% dplyr::select(roomDefault))
+  }else{
+    rooms <- base::round(rooms/0.5)*0.5
+  }
 
   # get base value
-  value <- as.numeric(table %>% select(baseVal))
+  value <- base::as.numeric(table %>% dplyr::select(baseVal))
 
   # corrections of base value
   # room size
-  if(as.numeric(rooms) < as.numeric(table$roomCntLoLi)){
+  if(base::as.numeric(rooms) < base::as.numeric(table$roomCntLoLi)){
     value <- value - table$roomCntCorr
   }
-  if(as.numeric(rooms) > as.numeric(table$roomCntHiLi)){
+  if(base::as.numeric(rooms) > base::as.numeric(table$roomCntHiLi)){
     value <- value + table$roomCntCorr
   }
 

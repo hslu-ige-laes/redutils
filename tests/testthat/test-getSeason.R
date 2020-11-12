@@ -1,0 +1,18 @@
+
+test_that("getSeason", {
+  expect_match(getSeason(as.Date("2019-01-01")),"Winter")
+  expect_match(getSeason(as.Date("2020-02-29")),"Winter")
+  expect_match(getSeason(as.Date("2018-02-28")),"Winter")
+  expect_match(getSeason(as.Date("2019-03-01")),"Spring")
+  expect_match(getSeason(as.Date("2019-05-31")),"Spring")
+  expect_match(getSeason(as.Date("2019-06-01")),"Summer")
+  expect_match(getSeason(as.Date("2019-08-31")),"Summer")
+  expect_match(getSeason(as.Date("2019-09-01")),"Fall")
+  expect_match(getSeason(as.Date("2019-11-30")),"Fall")
+  expect_match(getSeason(as.Date("2019-12-01")),"Winter")
+  expect_match(getSeason(as.Date("2019-12-31")),"Winter")
+  expect_match(getSeason(as.Date("2019-12-31"), c("Winter","Frühling","Sommer","Herbst")),"Winter")
+  expect_match(getSeason(as.Date("2019-03-01"), c("Winter","Frühling","Sommer","Herbst")),"Frühling")
+  expect_match(getSeason(as.Date("2019-06-01"), c("Winter","Frühling","Sommer","Herbst")),"Sommer")
+  expect_match(getSeason(as.Date("2019-09-01"), c("Winter","Frühling","Sommer","Herbst")),"Herbst")
+})

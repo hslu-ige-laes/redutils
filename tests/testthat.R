@@ -1,4 +1,5 @@
-library(testthat)
-library(redutils)
+require(testthat)
+require(redutils)
+
 
 test_check("redutils")
