@@ -15,8 +15,6 @@ getSeason <- function(x, seasonNames = c("Winter","Spring","Summer","Fall")){
   #' x <- as.Date("2019-04-01")
   #' getSeason(x, seasonNames = c("Winter","Frühling","Sommer","Herbst")) #"Frühling"
 
-  require(checkmate)
-
   # function argument checks
   checkmate::assertCharacter(seasonNames, min.chars = 1, len = 4)
 

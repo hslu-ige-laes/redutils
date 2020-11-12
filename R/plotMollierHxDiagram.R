@@ -37,9 +37,6 @@ plotMollierHx <- function(data,
   #' data <- readRDS(system.file("sampleData/flatTempHum.rds", package = "redutils"))
   #' plotMollierHx(data)
 
-  require(r2d3)
-  require(checkmate)
-
   # function argument checks
   checkmate::assertNumber(graphTempMin, lower = -40, upper = graphTempMax)
   checkmate::assertNumber(graphTempMax, lower = graphTempMin, upper = 60)
@@ -60,7 +57,7 @@ plotMollierHx <- function(data,
   pressure <- 101325 * (1+(-0.0065*base::as.numeric(altitude))/288.15)^(-9.80665/(287.058*(-0.0065)))
   r2d3::r2d3(
     data = r2d3::as_d3_data(data),
-    script = base::system.file("mollierHxDiagram/plot.js", package = "redutils"),
+    script = system.file("mollierHxDiagram/plot.js", package = "redutils"),
     options = list(
       graphTempMin = graphTempMin,
       graphTempMax = graphTempMax,

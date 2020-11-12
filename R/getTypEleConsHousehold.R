@@ -29,7 +29,7 @@ getTypEleConsHousehold <- function(occupants = 3.0,
   #'
   #' @details
   #' Source:
-  #' Nipkov, J. (2013). Typischer Haushalt-Stromverbrauch. Schlussbericht. Bundesamt für Energie (BFE). [https://www.aramis.admin.ch/Default.aspx?DocumentID=61764]
+  #' Nipkov, J. (2013). \href{https://www.aramis.admin.ch/Default.aspx?DocumentID=61764}{Typischer Haushalt-Stromverbrauch - Schlussbericht}. Bundesamt für Energie (BFE).
   #'
   #' Occupants:
   #' - The persons should be present at least on working days, i.e. at least in the evening and usually for 2 meals.
@@ -87,9 +87,6 @@ getTypEleConsHousehold <- function(occupants = 3.0,
   #' # flat in a multi family house
   #' getTypEleConsHousehold(occupants=3, rooms=4.5, bldgType="multi", freezer="none", eleCommon="excluded")
 
-  require(dplyr)
-  require(checkmate)
-
   # function argument checks
   checkmate::assertNumber(occupants, lower = 1.0, upper = 6.0)
   checkmate::assertNumber(rooms, lower = 1.0, upper = 9.0, null.ok = TRUE)
@@ -104,8 +101,8 @@ getTypEleConsHousehold <- function(occupants = 3.0,
   checkmate::assertChoice(eleCommon, c("included", "excluded"))
 
   bldgTypeInput <- bldgType
-  occupantsInput <- base::min(6.0, base::max(1.0, base::as.numeric(occupants)))
-  occupantsInput <- base::round(occupantsInput/0.5)*0.5
+  occupantsInput <- min(6.0, max(1.0, as.numeric(occupants)))
+  occupantsInput <- round(occupantsInput/0.5)*0.5
 
   # read table with values
   table <- utils::read.csv2(base::system.file("sampleData/typicalHousholdPowerConsumption.csv", package = "redutils"), stringsAsFactors = FALSE, dec = ".")
@@ -113,20 +110,20 @@ getTypEleConsHousehold <- function(occupants = 3.0,
 
   # if no rooms is NULL take the default of the table, else round the input
   if(is.null(rooms)){
-    rooms <- base::as.numeric(table %>% dplyr::select(roomDefault))
+    rooms <- as.numeric(table %>% dplyr::select(roomDefault))
   }else{
-    rooms <- base::round(rooms/0.5)*0.5
+    rooms <- round(rooms/0.5)*0.5
   }
 
   # get base value
-  value <- base::as.numeric(table %>% dplyr::select(baseVal))
+  value <- as.numeric(table %>% dplyr::select(baseVal))
 
   # corrections of base value
   # room size
-  if(base::as.numeric(rooms) < base::as.numeric(table$roomCntLoLi)){
+  if(as.numeric(rooms) < as.numeric(table$roomCntLoLi)){
     value <- value - table$roomCntCorr
   }
-  if(base::as.numeric(rooms) > base::as.numeric(table$roomCntHiLi)){
+  if(as.numeric(rooms) > as.numeric(table$roomCntHiLi)){
     value <- value + table$roomCntCorr
   }
 
