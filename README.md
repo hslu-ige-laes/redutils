@@ -7,8 +7,8 @@
 
 <!-- badges: end -->
 
-The goal of redutils is to provide useful functions to analyze and plots
-to visualize energy- and comfort related data.
+The goal of redutils is to provide useful functions and plots to analyze
+and visualize energy- and comfort related data.
 
 ## Installation
 
@@ -79,12 +79,6 @@ Hint: varoius settings can get changed via function arguments.
 ### plotMollierHxDiagram()
 
 Plot a D3 Mollier hx Diagram with scatter plot and comfort zone.
-
-``` r
-library(redutils)
-data <- readRDS(system.file("sampleData/flatTempHum.rds", package = "redutils"))
-plotMollierHx(data)
-```
 
 <img src="inst/mollierHxDiagram/example.png" class="illustration" width=600/>
 

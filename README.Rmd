@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of redutils is to provide useful functions to analyze and plots to visualize energy- and comfort related data. 
+The goal of redutils is to provide useful functions and plots to analyze and visualize energy- and comfort related data. 
 
 ## Installation
 
@@ -37,7 +37,7 @@ The package is not (yet) available on CRAN.
 ### getSeason()
 Get the season name out of a date for filter and grouping purposes.
 
-```{r example getSeason1, warning=FALSE, message=FALSE}
+```{r getSeason1, warning=FALSE, message=FALSE}
 library(redutils)
 x <- as.Date("2019-04-01")
 getSeason(x)
@@ -45,7 +45,7 @@ getSeason(x)
 
 Default language is English. You can change that by passing the argument `seasonNames`:
 
-```{r example getSeason2, warning=FALSE, message=FALSE}
+```{r getSeason2, warning=FALSE, message=FALSE}
 library(redutils)
 x <- as.Date("2019-04-01")
 getSeason(x, seasonNames = c("Winter","Frühling","Sommer","Herbst"))
@@ -54,7 +54,7 @@ getSeason(x, seasonNames = c("Winter","Frühling","Sommer","Herbst"))
 ### getTypEleConsHousehold()
 Get a typical electricity consumption of a household in kWh/year. This is useful to compare a real dataset with a typical consumption value.
 
-```{r example getTypEleConsHousehold1, warning=FALSE, message=FALSE}
+```{r getTypEleConsHousehold1, warning=FALSE, message=FALSE}
 # single family house
 library(redutils)
 getTypEleConsHousehold(occupants=3,
@@ -64,7 +64,7 @@ getTypEleConsHousehold(occupants=3,
                        eleCommon="included")
 ```
 
-```{r example getTypEleConsHousehold2, warning=FALSE, message=FALSE}
+```{r getTypEleConsHousehold2, warning=FALSE, message=FALSE}
 # flat in a multi family house
 library(redutils)
 getTypEleConsHousehold(occupants=3,
@@ -78,7 +78,7 @@ Hint: varoius settings can get changed via function arguments.
 ### plotMollierHxDiagram()
 Plot a D3 Mollier hx Diagram with scatter plot and comfort zone.
 
-```{r example plotMollierHxDiagram, eval = FALSE}
+```{r plotMollierHxDiagram, echo=FALSE, eval=FALSE}
 library(redutils)
 data <- readRDS(system.file("sampleData/flatTempHum.rds", package = "redutils"))
 plotMollierHx(data)
