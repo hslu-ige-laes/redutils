@@ -49,7 +49,7 @@ Get a typical electricity consumption of a household in kWh/year. This is useful
 }
 \details{
 Source:
-Nipkov, J. (2013). Typischer Haushalt-Stromverbrauch. Schlussbericht. Bundesamt für Energie (BFE). \link{https://www.aramis.admin.ch/Default.aspx?DocumentID=61764}
+Nipkov, J. (2013). \href{https://www.aramis.admin.ch/Default.aspx?DocumentID=61764}{Typischer Haushalt-Stromverbrauch - Schlussbericht}. Bundesamt für Energie (BFE).
 
 Occupants:
 \itemize{
