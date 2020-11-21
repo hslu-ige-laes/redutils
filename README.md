@@ -58,9 +58,9 @@ library(redutils)
 getTypEleConsHousehold(occupants=3,
                        rooms=5.5,
                        bldgType="single",
-                       waterHeater="heatpump",
+                       waterHeater="heatPump",
                        eleCommon="included")
-#> [1] 4800
+#> [1] 5370
 ```
 
 ``` r
@@ -75,6 +75,32 @@ getTypEleConsHousehold(occupants=3,
 Hint: varoius settings can get changed via function arguments.
 
 ## Plots
+
+### plotEnergyConsBeforeAfter()
+
+Plot a Graph with Energy Consumption per Month before/after an
+Optimization.
+
+``` r
+library(redutils)
+data <- readRDS(system.file("sampleData/flatHeatingEnergy.rds", package = "redutils"))
+plotEnergyConsBeforeAfter(data, dateOptimization = "2017-09-01")
+```
+
+<img src="man/figures/README-plotEnergyConsBeforeAfter-1.png" width="100%" />
+
+### plotEnergyConsDailyProfileOverview()
+
+Plot a Graph with Daily Energy Consumption Profiles by Weekday and
+Season.
+
+``` r
+library(redutils)
+data <- readRDS(system.file("sampleData/eboBookEleMeter.rds", package = "redutils"))
+plotEnergyConsDailyProfileOverview(data, locTimeZone = "Europe/Zurich")
+```
+
+<img src="man/figures/README-plotEnergyConsDailyProfileOverview-1.png" width="100%" />
 
 ### plotMollierHxDiagram()
 
