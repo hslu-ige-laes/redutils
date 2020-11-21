@@ -41,9 +41,9 @@ plotEnergyConsBeforeAfter <- function(data,
   dataBefore <- data %>% dplyr::filter(timestamp <= dateOptimization) %>% stats::na.omit()
 
   # add statistical band values and median of phase "before"
-  dataBefore <- dataBefore %>% dplyr::group_by(month) %>% dplyr::mutate(median = stats::quantile(value, 0.5),
-                                                               qLower = stats::quantile(value, 0.05),
-                                                               qUpper = stats::quantile(value, 0.95)
+  dataBefore <- dataBefore %>% dplyr::group_by(month) %>% dplyr::mutate(valueMedian = stats::quantile(value, 0.5, na.rm = TRUE),
+                                                               valueLower = as.numeric(stats::quantile(value, 0.05, na.rm = TRUE)),
+                                                               valueUpper = as.numeric(stats::quantile(value, 0.95, na.rm = TRUE))
   ) %>% dplyr::ungroup()
 
   # calculate values for different coloring
@@ -56,8 +56,8 @@ plotEnergyConsBeforeAfter <- function(data,
   # plot graph with all time series
   plot <- ggplot2::ggplot() +
     ggplot2::geom_line(data = dataBefore, ggplot2::aes(x = month, y = value, group = year, color = factor(year)), alpha = 0.5) +
-    ggplot2::geom_ribbon(data = dataBefore, ggplot2::aes(x = month, ymin = qLower, ymax = qUpper), fill = "orange", alpha = 0.3) +
-    ggplot2::geom_line(data = dataBefore, ggplot2::aes(x = month, y = median), colour = "orange", linetype = "dashed") +
+    ggplot2::geom_ribbon(data = dataBefore, ggplot2::aes(x = month, ymin = valueLower, ymax = valueUpper), fill = "orange", alpha = 0.3) +
+    ggplot2::geom_line(data = dataBefore, ggplot2::aes(x = month, y = valueMedian), colour = "orange", linetype = "dashed") +
     ggplot2::geom_line(data = dataAfter, ggplot2::aes(x = month, y = value, group = year, colour = factor(year)), alpha = 0.8) +
     ggplot2::geom_point(data = dataAfter, ggplot2::aes(x = month, y = value, group = year, color = factor(year)), alpha = 0.8, shape = 21, fill = "white") +
     ggplot2::labs(title = paste0(titlePlot, "\n"), x = "\nMonth", y = paste0(titleYAxis, "\n"), color = "Years\n") +
