@@ -6,23 +6,23 @@
 \usage{
 plotMollierHx(
   data,
-  graphTempMin = 15,
+  graphTempMin = 10,
   graphTempMax = 30,
   graphHumAbsMin = 0,
   graphHumAbsMax = 0.017,
-  altitude = 450,
-  cmfZoneTempMin = 21,
+  altitude = 500,
+  cmfZoneTempMin = 20,
   cmfZoneTempMax = 26,
   cmfZoneHumRelMin = 30,
   cmfZoneHumRelMax = 65,
   cmfZoneHumAbsMin = 0,
-  cmfZoneHumAbsMax = 0.012
+  cmfZoneHumAbsMax = 0.0115
 )
 }
 \arguments{
 \item{data}{Dataset to use for scatter plot. Must be a data.frame with "datetime, temperature degree celsius, humidity \%rH"}
 
-\item{graphTempMin}{Graph temperature minimum on y-axis in degree celsius, default 15.0}
+\item{graphTempMin}{Graph temperature minimum on y-axis in degree celsius, default 10.0}
 
 \item{graphTempMax}{Graph temperature maximum on y-axis in degree celsius, default 30.0}
 
@@ -30,9 +30,9 @@ plotMollierHx(
 
 \item{graphHumAbsMax}{Graph humidity maximun on x-axis in kg/kg, default 0.017}
 
-\item{altitude}{Altitude in meters above sea level to calculate pressure, default 450}
+\item{altitude}{Altitude in meters above sea level to calculate pressure, default 500}
 
-\item{cmfZoneTempMin}{Comfort zone temperature minimum in degree celsius, default 21.0}
+\item{cmfZoneTempMin}{Comfort zone temperature minimum in degree celsius, default 20.0}
 
 \item{cmfZoneTempMax}{Comfort zone temperature maximum in degree celsius, default 26.0}
 
@@ -42,7 +42,7 @@ plotMollierHx(
 
 \item{cmfZoneHumAbsMin}{Comfort zone humidity minimum in kg/kg, default 0.0}
 
-\item{cmfZoneHumAbsMax}{Comfort zone humidity maximum in kg/kg, default 0.012. Also called sultriness limit (de: Schwülgrenze)}
+\item{cmfZoneHumAbsMax}{Comfort zone humidity maximum in kg/kg, default 0.0115. Also called sultriness limit (de: Schwülgrenze)}
 }
 \value{
 Returns a r2d3 plot

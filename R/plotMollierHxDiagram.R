@@ -1,30 +1,30 @@
 plotMollierHx <- function(data,
-                          graphTempMin = 15.0,
+                          graphTempMin = 10.0,
                           graphTempMax = 30.0,
                           graphHumAbsMin = 0.0,
                           graphHumAbsMax = 0.017,
-                          altitude = 450,
-                          cmfZoneTempMin = 21.0,
+                          altitude = 500,
+                          cmfZoneTempMin = 20.0,
                           cmfZoneTempMax = 26.0,
                           cmfZoneHumRelMin = 30.0,
                           cmfZoneHumRelMax = 65.0,
                           cmfZoneHumAbsMin = 0.0,
-                          cmfZoneHumAbsMax = 0.012){
+                          cmfZoneHumAbsMax = 0.0115){
   #' Plot a D3 Mollier hx Diagram
   #'
   #' Plot a D3 Mollier hx Diagram with scatter plot and comfort zone
   #' @param data 	Dataset to use for scatter plot. Must be a data.frame with "datetime, temperature degree celsius, humidity %rH"
-  #' @param graphTempMin Graph temperature minimum on y-axis in degree celsius, default 15.0
+  #' @param graphTempMin Graph temperature minimum on y-axis in degree celsius, default 10.0
   #' @param graphTempMax Graph temperature maximum on y-axis in degree celsius, default 30.0
   #' @param graphHumAbsMin Graph humidity minimum on x-axis in kg/kg, default 0.0
   #' @param graphHumAbsMax Graph humidity maximun on x-axis in kg/kg, default 0.017
-  #' @param altitude Altitude in meters above sea level to calculate pressure, default 450
-  #' @param cmfZoneTempMin Comfort zone temperature minimum in degree celsius, default 21.0
+  #' @param altitude Altitude in meters above sea level to calculate pressure, default 500
+  #' @param cmfZoneTempMin Comfort zone temperature minimum in degree celsius, default 20.0
   #' @param cmfZoneTempMax Comfort zone temperature maximum in degree celsius, default 26.0
   #' @param cmfZoneHumRelMin Comfort zone humidity minimum in %rH, default 30.0
   #' @param cmfZoneHumRelMax Comfort zone humidity maximum in %rH, default 65.0
   #' @param cmfZoneHumAbsMin Comfort zone humidity minimum in kg/kg, default 0.0
-  #' @param cmfZoneHumAbsMax Comfort zone humidity maximum in kg/kg, default 0.012. Also called sultriness limit (de: Schwülgrenze)
+  #' @param cmfZoneHumAbsMax Comfort zone humidity maximum in kg/kg, default 0.0115. Also called sultriness limit (de: Schwülgrenze)
   #'
   #' @return Returns a r2d3 plot
   #' @import r2d3
