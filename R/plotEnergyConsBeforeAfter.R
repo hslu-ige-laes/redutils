@@ -60,7 +60,7 @@ plotEnergyConsBeforeAfter <- function(data,
     ggplot2::geom_line(data = dataBefore, ggplot2::aes(x = month, y = median), colour = "orange", linetype = "dashed") +
     ggplot2::geom_line(data = dataAfter, ggplot2::aes(x = month, y = value, group = year, colour = factor(year)), alpha = 0.8) +
     ggplot2::geom_point(data = dataAfter, ggplot2::aes(x = month, y = value, group = year, color = factor(year)), alpha = 0.8, shape = 21, fill = "white") +
-    ggplot2::labs(title = paste0(titlePlot, "\n"), x = "Month", y = titleYAxis, color = "Years\n") +
+    ggplot2::labs(title = paste0(titlePlot, "\n"), x = "\nMonth", y = paste0(titleYAxis, "\n"), color = "Years\n") +
     ggplot2::scale_x_discrete(limits = month.abb) +
     ggplot2::scale_color_manual(values=c(rep("grey", yearsBefore), viridis::viridis(yearsAfter)))
 
