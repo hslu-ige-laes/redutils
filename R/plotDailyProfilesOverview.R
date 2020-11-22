@@ -1,16 +1,18 @@
-plotEnergyConsDailyProfileOverview <- function(data,
+plotDailyProfilesOverview <- function(data,
                                                locTimeZone = "UTC",
-                                               titlePlot = "Daily Energy Consumption by Weekday and Season",
+                                               titlePlot = "Daily Profiles Overview by Weekday and Season",
                                                titleYAxis = "Energy Consumption (kWh/h)",
-                                               ci = 95.0){
-  #' Plot Energy Consumption Daily Profile Overview
+                                               lineColor = "black",
+                                               confidence = 95.0){
+  #' Plot Daily Profiles Overview
   #'
   #' Plot a Graph with Daily Energy Consumption Profiles by Weekday and Season
   #' @param data Dataset to use for plot, minimum 1 hour aggregated. Must be a data.frame with "timestamp YmdHMS, energy consumption"
   #' @param locTimeZone Time zone of timestamp, default "UTC"
   #' @param titlePlot Main title of plot, default "Before/After Optimization"
   #' @param titleYAxis y-axis title, default "Energy Consumption (kWh/month)"
-  #' @param ci Confidence interval for upper ribbon in percent (lower is calculated automatically), default 95 percent"
+  #' @param lineColor Line color of median value, default "black"
+  #' @param confidence Confidence interval for upper ribbon in percent (lower is calculated automatically), default 95 percent"
   #'
   #' @return Returns a ggplot object
   #' @importFrom lubridate parse_date_time floor_date hour wday
@@ -21,13 +23,14 @@ plotEnergyConsDailyProfileOverview <- function(data,
   #' @export
   #' @examples
   #' data <- readRDS(system.file("sampleData/eboBookEleMeter.rds", package = "redutils"))
-  #' plotEnergyConsDailyProfileOverview(data, locTimeZone = "Europe/Zurich")
+  #' plotDailyProfilesOverview(data, locTimeZone = "Europe/Zurich")
 
   # function argument checks
   checkmate::assertString(locTimeZone)
   checkmate::assertString(titlePlot)
   checkmate::assertString(titleYAxis)
-  checkmate::assertNumber(ci, lower = 50.0, upper = 100.0)
+  checkmate::assertString(lineColor)
+  checkmate::assertNumber(confidence, lower = 50.0, upper = 100.0)
 
 
   # function code
@@ -60,13 +63,13 @@ plotEnergyConsDailyProfileOverview <- function(data,
   df.h <- df.h %>%
     dplyr::group_by(season, weekday, dayhour) %>%
     dplyr::mutate(valueMedian = as.numeric(stats::quantile(value, 0.5, na.rm = TRUE)),
-                  valueUpper = as.numeric(stats::quantile(value, ci/100, na.rm = TRUE)),
-                  valueLower = as.numeric(stats::quantile(value, (100-ci)/100, na.rm = TRUE))) %>%
+                  valueUpper = as.numeric(stats::quantile(value, confidence/100, na.rm = TRUE)),
+                  valueLower = as.numeric(stats::quantile(value, (100-confidence)/100, na.rm = TRUE))) %>%
     dplyr::ungroup()
 
   plot <- ggplot2::ggplot(df.h) +
     ggplot2::geom_ribbon(ggplot2::aes(x = dayhour, ymin = valueLower, ymax = valueUpper), fill = "darkgrey", alpha = 0.7) +
-    ggplot2::geom_line(ggplot2::aes(x = dayhour, y = valueMedian), color = "black", alpha = 0.5) +
+    ggplot2::geom_line(ggplot2::aes(x = dayhour, y = valueMedian), color = lineColor, alpha = 0.5) +
     ggplot2::labs(x = "\nHour of day", y = paste0(titleYAxis, "\n")) +
     ggplot2::facet_grid(season~weekday) +
     ggplot2::theme_minimal() +
