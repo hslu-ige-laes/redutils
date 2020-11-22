@@ -97,10 +97,10 @@ Season.
 ``` r
 library(redutils)
 data <- readRDS(system.file("sampleData/eboBookEleMeter.rds", package = "redutils"))
-plotEnergyConsDailyProfileOverview(data, locTimeZone = "Europe/Zurich")
+plotDailyProfilesOverview(data, locTimeZone = "Europe/Zurich")
 ```
 
-<img src="man/figures/README-plotEnergyConsDailyProfileOverview-1.png" width="100%" />
+<img src="man/figures/README-plotDailyProfilesOverview-1.png" width="100%" />
 
 ### plotMollierHxDiagram()
 

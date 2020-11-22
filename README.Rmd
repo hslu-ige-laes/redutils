@@ -87,10 +87,10 @@ plotEnergyConsBeforeAfter(data, dateOptimization = "2017-09-01")
 ### plotEnergyConsDailyProfileOverview()
 Plot a Graph with Daily Energy Consumption Profiles by Weekday and Season.
 
-```{r plotEnergyConsDailyProfileOverview, warning=FALSE, message=FALSE}
+```{r plotDailyProfilesOverview, warning=FALSE, message=FALSE}
 library(redutils)
 data <- readRDS(system.file("sampleData/eboBookEleMeter.rds", package = "redutils"))
-plotEnergyConsDailyProfileOverview(data, locTimeZone = "Europe/Zurich")
+plotDailyProfilesOverview(data, locTimeZone = "Europe/Zurich")
 ```
 
 ### plotMollierHxDiagram()
