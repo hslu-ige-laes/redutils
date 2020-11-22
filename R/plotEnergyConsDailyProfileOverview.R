@@ -1,7 +1,8 @@
 plotEnergyConsDailyProfileOverview <- function(data,
                                                locTimeZone = "UTC",
                                                titlePlot = "Daily Energy Consumption by Weekday and Season",
-                                               titleYAxis = "Energy Consumption (kWh/h)"){
+                                               titleYAxis = "Energy Consumption (kWh/h)",
+                                               ci = 95.0){
   #' Plot Energy Consumption Daily Profile Overview
   #'
   #' Plot a Graph with Daily Energy Consumption Profiles by Weekday and Season
@@ -9,10 +10,11 @@ plotEnergyConsDailyProfileOverview <- function(data,
   #' @param locTimeZone Time zone of timestamp, default "UTC"
   #' @param titlePlot Main title of plot, default "Before/After Optimization"
   #' @param titleYAxis y-axis title, default "Energy Consumption (kWh/month)"
+  #' @param ci Confidence interval for upper ribbon in percent (lower is calculated automatically), default 95 percent"
   #'
   #' @return Returns a ggplot object
   #' @importFrom lubridate parse_date_time floor_date hour wday
-  #' @importFrom checkmate assertString
+  #' @importFrom checkmate assertString assertNumber
   #' @importFrom dplyr group_by mutate ungroup
   #' @importFrom stats quantile
   #' @importFrom ggplot2 ggplot geom_ribbon geom_line labs aes facet_grid theme_minimal theme element_text scale_x_continuous
@@ -25,6 +27,8 @@ plotEnergyConsDailyProfileOverview <- function(data,
   checkmate::assertString(locTimeZone)
   checkmate::assertString(titlePlot)
   checkmate::assertString(titleYAxis)
+  checkmate::assertNumber(ci, lower = 50.0, upper = 100.0)
+
 
   # function code
   colnames(data) <- c("timestamp", "value")
@@ -56,8 +60,8 @@ plotEnergyConsDailyProfileOverview <- function(data,
   df.h <- df.h %>%
     dplyr::group_by(season, weekday, dayhour) %>%
     dplyr::mutate(valueMedian = as.numeric(stats::quantile(value, 0.5, na.rm = TRUE)),
-                  valueUpper = as.numeric(stats::quantile(value, 0.95, na.rm = TRUE)),
-                  valueLower = as.numeric(stats::quantile(value, 0.05, na.rm = TRUE))) %>%
+                  valueUpper = as.numeric(stats::quantile(value, ci/100, na.rm = TRUE)),
+                  valueLower = as.numeric(stats::quantile(value, (100-ci)/100, na.rm = TRUE))) %>%
     dplyr::ungroup()
 
   plot <- ggplot2::ggplot(df.h) +
@@ -66,8 +70,9 @@ plotEnergyConsDailyProfileOverview <- function(data,
     ggplot2::labs(x = "\nHour of day", y = paste0(titleYAxis, "\n")) +
     ggplot2::facet_grid(season~weekday) +
     ggplot2::theme_minimal() +
-    ggplot2::theme(axis.text.x = ggplot2::element_text(colour = "grey20", size = 6, angle = 90, hjust = 0.5, vjust = 0.5, face = "plain")) +
-    ggplot2::scale_x_continuous(breaks = seq(from = 0, to = 23, by = 2)) +
+    ggplot2::theme(axis.text.x = ggplot2::element_text(colour = "grey50", size = 8, hjust = 0.5, vjust = 0.5, face = "plain")) +
+    ggplot2::theme(axis.text.y.right = ggplot2::element_text(angle = 180)) +
+    ggplot2::scale_x_continuous(breaks = seq(from = 0, to = 23, by = 6)) +
     ggplot2::ggtitle(paste0(titlePlot, "\n"))
 
   return(plot)

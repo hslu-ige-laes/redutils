@@ -8,7 +8,8 @@ plotEnergyConsDailyProfileOverview(
   data,
   locTimeZone = "UTC",
   titlePlot = "Daily Energy Consumption by Weekday and Season",
-  titleYAxis = "Energy Consumption (kWh/h)"
+  titleYAxis = "Energy Consumption (kWh/h)",
+  ci = 95
 )
 }
 \arguments{
@@ -19,6 +20,8 @@ plotEnergyConsDailyProfileOverview(
 \item{titlePlot}{Main title of plot, default "Before/After Optimization"}
 
 \item{titleYAxis}{y-axis title, default "Energy Consumption (kWh/month)"}
+
+\item{ci}{Confidence interval for upper ribbon in percent (lower is calculated automatically), default 95 percent"}
 }
 \value{
 Returns a ggplot object
