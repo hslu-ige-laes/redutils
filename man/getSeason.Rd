@@ -4,12 +4,12 @@
 \alias{getSeason}
 \title{Get season from date}
 \usage{
-getSeason(x, seasonNames = c("Winter", "Spring", "Summer", "Fall"))
+getSeason(x, seasonlab = c("Winter", "Spring", "Summer", "Fall"))
 }
 \arguments{
 \item{x}{a POSIXct, POSIXlt, Date, chron, yearmon, yearqtr, zoo, zooreg, timeDate, xts, its, ti, jul, timeSeries, or fts object..}
 
-\item{seasonNames}{concatenated strings with 4 seasons, default c("Winter","Spring","Summer","Fall")}
+\item{seasonlab}{Season labels, concatenated strings with 4 seasons, default c("Winter","Spring","Summer","Fall")}
 }
 \value{
 Returns the corresponding season.
@@ -22,5 +22,5 @@ x <- as.Date("2019-04-01")
 getSeason(x) #"Spring"
 
 x <- as.Date("2019-04-01")
-getSeason(x, seasonNames = c("Winter","FrÃ¼hling","Sommer","Herbst")) #"FrÃ¼hling"
+getSeason(x, seasonlab = c("Winter","FrÃ¼hling","Sommer","Herbst")) #"FrÃ¼hling"
 }
