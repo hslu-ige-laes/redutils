@@ -102,6 +102,21 @@ plotDailyProfilesOverview(data, locTimeZone = "Europe/Zurich")
 
 <img src="man/figures/README-plotDailyProfilesOverview-1.png" width="100%" />
 
+### plotDailyProfilesDecomposed()
+
+Plot a Graph with Decomposed Daily Energy Consumption Profiles by
+Weekday. Decomposed means that the trend component (average of 2 week
+per default) is removed and only the seasonal component is showed. This
+allows an easier comparison.
+
+``` r
+library(redutils)
+data <- readRDS(system.file("sampleData/eboBookEleMeter.rds", package = "redutils"))
+plotDailyProfilesDecomposed(data, locTimeZone = "Europe/Zurich")
+```
+
+<img src="man/figures/README-plotDailyProfilesdecomposition-1.png" width="100%" />
+
 ### plotMollierHxDiagram()
 
 Plot a D3 Mollier hx Diagram with scatter plot and comfort zone.
