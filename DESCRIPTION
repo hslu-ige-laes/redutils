@@ -12,7 +12,8 @@ Imports:
     checkmate,
     ggplot2,
     viridis,
-    stats
+    stats,
+    zoo
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
