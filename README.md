@@ -43,14 +43,15 @@ Default language is English. You can change that by passing the argument
 ``` r
 library(redutils)
 x <- as.Date("2019-04-01")
-getSeason(x, seasonNames = c("Winter","Frühling","Sommer","Herbst"))
+getSeason(x, seasonlab = c("Winter","Frühling","Sommer","Herbst"))
 #> [1] "Frühling"
 ```
 
 ### getTypEleConsHousehold()
 
-Get a typical electricity consumption of a household in kWh/year. This
-is useful to compare a real dataset with a typical consumption value.
+Get a typical electricity consumption of a Swiss household in kWh/year.
+This is useful to compare a real dataset with a typical consumption
+value.
 
 ``` r
 # single family house
@@ -84,10 +85,10 @@ Optimization.
 ``` r
 library(redutils)
 data <- readRDS(system.file("sampleData/flatHeatingEnergy.rds", package = "redutils"))
-plotEnergyConsBeforeAfter(data, dateOptimization = "2017-09-01")
+plotSeasonalXYBeforeAfter(data, dateOptimization = "2017-09-01")
 ```
 
-<img src="man/figures/README-plotEnergyConsBeforeAfter-1.png" width="100%" />
+<img src="man/figures/README-plotSeasonalXYBeforeAfter-1.png" width="100%" />
 
 ### plotEnergyConsDailyProfileOverview()
 
