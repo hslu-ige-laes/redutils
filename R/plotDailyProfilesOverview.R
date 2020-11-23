@@ -1,9 +1,9 @@
 plotDailyProfilesOverview <- function(data,
-                                               locTimeZone = "UTC",
-                                               titlePlot = "Daily Profiles Overview by Weekday and Season",
-                                               titleYAxis = "Energy Consumption (kWh/h)",
-                                               lineColor = "black",
-                                               confidence = 95.0){
+                                      locTimeZone = "UTC",
+                                      titlePlot = "Daily Profiles Overview by Weekday and Season",
+                                      titleYAxis = "Energy Consumption (kWh/h)",
+                                      lineColor = "black",
+                                      confidence = 95.0){
   #' Plot Daily Profiles Overview
   #'
   #' Plot a Graph with Daily Energy Consumption Profiles by Weekday and Season
