@@ -52,7 +52,7 @@ getSeason(x, seasonNames = c("Winter","Frühling","Sommer","Herbst"))
 ```
 
 ### getTypEleConsHousehold()
-Get a typical electricity consumption of a household in kWh/year. This is useful to compare a real dataset with a typical consumption value.
+Get a typical electricity consumption of a Swiss household in kWh/year. This is useful to compare a real dataset with a typical consumption value.
 
 ```{r getTypEleConsHousehold1, warning=FALSE, message=FALSE}
 # single family house
