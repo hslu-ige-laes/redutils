@@ -7,9 +7,9 @@
 plotDailyProfilesOverview(
   data,
   locTimeZone = "UTC",
-  titlePlot = "Daily Profiles Overview by Weekday and Season",
-  titleYAxis = "Energy Consumption (kWh/h)",
-  lineColor = "black",
+  main = "Daily Profiles Overview by Weekday and Season",
+  ylab = "Energy Consumption (kWh/h)",
+  col = "black",
   confidence = 95
 )
 }
@@ -18,11 +18,11 @@ plotDailyProfilesOverview(
 
 \item{locTimeZone}{Time zone of timestamp, default "UTC"}
 
-\item{titlePlot}{Main title of plot, default "Before/After Optimization"}
+\item{main}{Main title of plot, default "Before/After Optimization"}
 
-\item{titleYAxis}{y-axis title, default "Energy Consumption (kWh/month)"}
+\item{ylab}{y-axis title, default "Energy Consumption (kWh/month)"}
 
-\item{lineColor}{Line color of median value, default "black"}
+\item{col}{Line colour of median value, default "black"}
 
 \item{confidence}{Confidence interval for upper ribbon in percent (lower is calculated automatically), default 95 percent"}
 }
