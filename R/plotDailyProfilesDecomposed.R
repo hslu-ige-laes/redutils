@@ -1,7 +1,7 @@
 plotDailyProfilesDecomposed <- function(data,
                                         locTimeZone = "UTC",
-                                        titlePlot = "Daily Profiles - Decomposed",
-                                        titleYAxis = "delta Energy Consumption",
+                                        main = "Daily Profiles - Decomposed",
+                                        ylab = "delta Energy Consumption",
                                         k = 672
 ){
   #' Plot Daily Profiles Decomposed
@@ -9,8 +9,8 @@ plotDailyProfilesDecomposed <- function(data,
   #' Plot a Graph with Decomposed Daily Energy Consumption Profiles by Weekday
   #' @param data Dataset to use for plot, minimum 1 hour aggregated. Must be a data.frame with "timestamp YmdHMS, energy consumption"
   #' @param locTimeZone Time zone of timestamp, default "UTC"
-  #' @param titlePlot Main title of plot, default "Daily Profiles - Decomposed"
-  #' @param titleYAxis y-axis title, default "delta Energy Consumption"
+  #' @param main Main title of plot, default "Daily Profiles - Decomposed"
+  #' @param ylab y-axis title, default "delta Energy Consumption"
   #' @param k Amount of samples for the rolling window used for the decomosition of the trend component, default 672 which corresponds to 7 days
   #'
   #' @return Returns a ggplot object
@@ -28,8 +28,8 @@ plotDailyProfilesDecomposed <- function(data,
 
   # function argument checks
   checkmate::assertString(locTimeZone)
-  checkmate::assertString(titlePlot)
-  checkmate::assertString(titleYAxis)
+  checkmate::assertString(main)
+  checkmate::assertString(ylab)
 
   # function code
   colnames(data) <- c("Time", "value")
@@ -93,7 +93,7 @@ plotDailyProfilesDecomposed <- function(data,
     ggplot2::geom_path(ggplot2::aes(color = weekday)) +
     ggplot2::theme_minimal() +
     ggplot2::theme(axis.text.x = ggplot2::element_text(colour = "grey50", size = 8, hjust = 0.5, vjust = 0.5, face = "plain")) +
-    ggplot2::labs(title = paste0(titlePlot, "\n"), x = "\nHour of Day", y = paste0(titleYAxis, "\n"), color = "Legend") +
+    ggplot2::labs(title = paste0(main, "\n"), x = "\nHour of Day", y = paste0(ylab, "\n"), color = "Legend") +
     ggplot2::scale_x_continuous(breaks = seq(from = 0, to = 24, by = 6)) +
     viridis::scale_color_viridis(discrete = TRUE)
 
