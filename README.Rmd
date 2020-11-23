@@ -48,7 +48,7 @@ Default language is English. You can change that by passing the argument `season
 ```{r getSeason2, warning=FALSE, message=FALSE}
 library(redutils)
 x <- as.Date("2019-04-01")
-getSeason(x, seasonNames = c("Winter","Frühling","Sommer","Herbst"))
+getSeason(x, seasonlab = c("Winter","Frühling","Sommer","Herbst"))
 ```
 
 ### getTypEleConsHousehold()
