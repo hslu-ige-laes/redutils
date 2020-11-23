@@ -78,10 +78,10 @@ Hint: varoius settings can get changed via function arguments.
 ### plotEnergyConsBeforeAfter()
 Plot a Graph with Energy Consumption per Month before/after an Optimization.
 
-```{r plotEnergyConsBeforeAfter, warning=FALSE, message=FALSE}
+```{r plotSeasonalXYBeforeAfter, warning=FALSE, message=FALSE}
 library(redutils)
 data <- readRDS(system.file("sampleData/flatHeatingEnergy.rds", package = "redutils"))
-plotEnergyConsBeforeAfter(data, dateOptimization = "2017-09-01")
+plotSeasonalXYBeforeAfter(data, dateOptimization = "2017-09-01")
 ```
 
 ### plotEnergyConsDailyProfileOverview()
