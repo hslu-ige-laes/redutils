@@ -7,8 +7,8 @@
 plotDailyProfilesDecomposed(
   data,
   locTimeZone = "UTC",
-  titlePlot = "Daily Profiles - Decomposed",
-  titleYAxis = "delta Energy Consumption",
+  main = "Daily Profiles - Decomposed",
+  ylab = "delta Energy Consumption",
   k = 672
 )
 }
@@ -17,9 +17,9 @@ plotDailyProfilesDecomposed(
 
 \item{locTimeZone}{Time zone of timestamp, default "UTC"}
 
-\item{titlePlot}{Main title of plot, default "Daily Profiles - Decomposed"}
+\item{main}{Main title of plot, default "Daily Profiles - Decomposed"}
 
-\item{titleYAxis}{y-axis title, default "delta Energy Consumption"}
+\item{ylab}{y-axis title, default "delta Energy Consumption"}
 
 \item{k}{Amount of samples for the rolling window used for the decomosition of the trend component, default 672 which corresponds to 7 days}
 }
