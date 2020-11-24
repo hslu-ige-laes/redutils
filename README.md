@@ -40,7 +40,7 @@ getSeason(x)
 ```
 
 Default language is English. You can change that by passing the argument
-`seasonNames`:
+`seasonlab`:
 
 ``` r
 library(redutils)
