@@ -1,10 +1,10 @@
-plotHeatmapMedian <- function(data,
-                              locTimeZone = "UTC",
-                              main = "Heatmap Median per hour by Weekday and Season",
-                              ylab = "Energy Consumption (kWh/h)"){
-  #' Plot Heatmap Median
+plotHeatmapMedianWeeks <- function(data,
+                                   locTimeZone = "UTC",
+                                   main = "Heatmap Median per hour by Weekday and Season",
+                                   ylab = "Energy Consumption (kWh/h)"){
+  #' Plot Heatmap Median Weeks
   #'
-  #' Plot Heatmap of Median Energy Consumption by Hour, Weekday and Season of Year
+  #' Plot Heatmap of Median Energy Consumption by Hour, Weekdays and Seasons of Year
   #' @param data Dataset to use for plot, minimum 1 hour aggregated. Must be a data.frame with "timestamp YmdHMS, energy consumption"
   #' @param locTimeZone Time zone of timestamp, default "UTC"
   #' @param main Main title of plot, default "Heatmap Median per hour by Weekday and Season"
@@ -19,7 +19,7 @@ plotHeatmapMedian <- function(data,
   #' @export
   #' @examples
   #' data <- readRDS(system.file("sampleData/eboBookEleMeter.rds", package = "redutils"))
-  #' plotHeatmapMedian(data, locTimeZone = "Europe/Zurich")
+  #' plotHeatmapMedianWeeks(data, locTimeZone = "Europe/Zurich")
 
   # function argument checks
   checkmate::assertString(locTimeZone)

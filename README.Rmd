@@ -103,13 +103,13 @@ data <- readRDS(system.file("sampleData/eboBookEleMeter.rds", package = "redutil
 plotDailyProfilesDecomposed(data, locTimeZone = "Europe/Zurich")
 ```
 
-### plotHeatmapMedian()
-Plot Heatmap of Median Energy Consumption by Hour, Weekday and Season of Year.
+### plotHeatmapMedianWeeks()
+Plot Heatmap of Median Energy Consumption by Hour, Weekdays and Seasons of Year.
 
-```{r plotHeatmapMedian, warning=FALSE, message=FALSE}
+```{r plotHeatmapMedianWeeks, warning=FALSE, message=FALSE}
 library(redutils)
 data <- readRDS(system.file("sampleData/eboBookEleMeter.rds", package = "redutils"))
-plotHeatmapMedian(data, locTimeZone = "Europe/Zurich")
+plotHeatmapMedianWeeks(data, locTimeZone = "Europe/Zurich")
 ```
 
 ### plotMollierHxDiagram()
