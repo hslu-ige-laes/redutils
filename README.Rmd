@@ -18,7 +18,8 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of redutils is to provide useful functions and plots to analyze and visualize energy- and comfort related data. 
+The R-package 'redutils' provides frequently used utility functions for the analysis and visualization of comfort and energy data in R.
+These functions reduce the complexity of the analysis task and allow a fast visualization of the data.
 
 ## Installation
 
@@ -100,6 +101,15 @@ Plot a Graph with Decomposed Daily Energy Consumption Profiles by Weekday. Decom
 library(redutils)
 data <- readRDS(system.file("sampleData/eboBookEleMeter.rds", package = "redutils"))
 plotDailyProfilesDecomposed(data, locTimeZone = "Europe/Zurich")
+```
+
+### plotHeatmapMedian()
+Plot Heatmap of Median Energy Consumption by Hour, Weekday and Season of Year.
+
+```{r plotHeatmapMedian, warning=FALSE, message=FALSE}
+library(redutils)
+data <- readRDS(system.file("sampleData/eboBookEleMeter.rds", package = "redutils"))
+plotHeatmapMedian(data, locTimeZone = "Europe/Zurich")
 ```
 
 ### plotMollierHxDiagram()
