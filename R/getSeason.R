@@ -21,7 +21,7 @@ getSeason <- function(x, seasonlab = c("Winter","Spring","Summer","Fall")){
   # function code
   numeric.date <- 100 * lubridate::month(x) + lubridate::day(x)
 
-  cuts <- base::cut(numeric.date, breaks = c(0,0229,0531,0831,1130,1231))
+  cuts <- base::cut(numeric.date, breaks = c(0,0319,0620,0922,1221,1231))
 
   levels(cuts) <- c(seasonlab[1], seasonlab[2], seasonlab[3], seasonlab[4], seasonlab[1])
 
