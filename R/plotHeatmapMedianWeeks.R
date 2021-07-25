@@ -39,16 +39,29 @@ plotHeatmapMedianWeeks <- function(data,
     dplyr::summarise(value = sum(value)) %>%
     dplyr::ungroup()
 
-  df.h <- df.h %>%
-    dplyr::mutate(weekday = lubridate::wday(hour,
-                                            label = TRUE,
-                                            locale = "English",
-                                            abbr = TRUE,
-                                            week_start = getOption("lubridate.week.start", 1)),
-                  dayhour = lubridate::hour(hour),
-                  season = redutils::getSeason(hour)
-    ) %>%
-    select(-hour)
+  if(.Platform$OS.type == "windows"){
+    df.h <- df.h %>%
+      dplyr::mutate(weekday = lubridate::wday(hour,
+                                              label = TRUE,
+                                              locale = "English",
+                                              abbr = TRUE,
+                                              week_start = getOption("lubridate.week.start", 1)),
+                    dayhour = lubridate::hour(hour),
+                    season = redutils::getSeason(hour)
+      ) %>%
+      select(-hour)
+  } else {
+    df.h <- df.h %>%
+      dplyr::mutate(weekday = lubridate::wday(hour,
+                                              label = TRUE,
+                                              locale = "en_US",
+                                              abbr = TRUE,
+                                              week_start = getOption("lubridate.week.start", 1)),
+                    dayhour = lubridate::hour(hour),
+                    season = redutils::getSeason(hour)
+      ) %>%
+      select(-hour)
+  }
 
   # calculate mean values per hour
   df.h <- df.h %>%

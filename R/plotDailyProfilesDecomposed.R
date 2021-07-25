@@ -43,17 +43,56 @@ plotDailyProfilesDecomposed <- function(data,
   # https://doi.org/10.1016/j.enbuild.2018.07.056
 
   # calculate rolling mean and detrend series
-  df.decompose.all <- data %>%
-    dplyr::mutate(weekday = lubridate::wday(Time,
-                                            label = TRUE,
-                                            locale = "English",
-                                            abbr = TRUE,
-                                            week_start = getOption("lubridate.week.start", 1)),
-                  dayhour = lubridate::hour(Time),
-                  dayminute = lubridate::minute(Time),
-                  trend = zoo::rollmean(value, k, fill = NA),
-                  valueDetrended = value - trend) %>%
-    stats::na.omit()
+  if(.Platform$OS.type == "windows"){
+    df.decompose.all <- data %>%
+      dplyr::mutate(weekday = lubridate::wday(Time,
+                                              label = TRUE,
+                                              locale = "English",
+                                              abbr = TRUE,
+                                              week_start = getOption("lubridate.week.start", 1)),
+                    dayhour = lubridate::hour(Time),
+                    dayminute = lubridate::minute(Time),
+                    trend = zoo::rollmean(value, k, fill = NA),
+                    valueDetrended = value - trend) %>%
+      stats::na.omit()
+  } else {
+    df.decompose.all <- data %>%
+      dplyr::mutate(weekday = lubridate::wday(Time,
+                                              label = TRUE,
+                                              locale = "en_US",
+                                              abbr = TRUE,
+                                              week_start = getOption("lubridate.week.start", 1)),
+                    dayhour = lubridate::hour(Time),
+                    dayminute = lubridate::minute(Time),
+                    trend = zoo::rollmean(value, k, fill = NA),
+                    valueDetrended = value - trend) %>%
+      stats::na.omit()
+  }
+  if(.Platform$OS.type == "windows"){
+    df.decompose.all <- data %>%
+      dplyr::mutate(weekday = lubridate::wday(Time,
+                                              label = TRUE,
+                                              locale = "English",
+                                              abbr = TRUE,
+                                              week_start = getOption("lubridate.week.start", 1)),
+                    dayhour = lubridate::hour(Time),
+                    dayminute = lubridate::minute(Time),
+                    trend = zoo::rollmean(value, k, fill = NA),
+                    valueDetrended = value - trend) %>%
+      stats::na.omit()
+  } else {
+    df.decompose.all <- data %>%
+      dplyr::mutate(weekday = lubridate::wday(Time,
+                                              label = TRUE,
+                                              locale = "en_US",
+                                              abbr = TRUE,
+                                              week_start = getOption("lubridate.week.start", 1)),
+                    dayhour = lubridate::hour(Time),
+                    dayminute = lubridate::minute(Time),
+                    trend = zoo::rollmean(value, k, fill = NA),
+                    valueDetrended = value - trend) %>%
+      stats::na.omit()
+  }
 
   # ============== Subsetting per day =================
 
