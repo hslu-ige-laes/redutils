@@ -2,7 +2,8 @@ plotDailyProfilesDecomposed <- function(data,
                                         locTimeZone = "UTC",
                                         main = "Daily Profiles - Decomposed",
                                         ylab = "delta Energy Consumption",
-                                        k = 672
+                                        k = 672,
+                                        digits = 1
 ){
   #' Plot Daily Profiles Decomposed
   #'
@@ -12,6 +13,7 @@ plotDailyProfilesDecomposed <- function(data,
   #' @param main Main title of plot, default "Daily Profiles - Decomposed"
   #' @param ylab y-axis title, default "delta Energy Consumption"
   #' @param k Amount of samples for the rolling window used for the decomosition of the trend component, default 672 which corresponds to 7 days
+  #' @param digits Number of digits for mouse-hover text, default 1 digit e.g. 10.3
   #'
   #' @return Returns a ggplot object
   #' @importFrom lubridate wday hour minute parse_date_time
@@ -124,7 +126,7 @@ plotDailyProfilesDecomposed <- function(data,
   # prepare data for plot
   df.plot <- df.final %>%
     dplyr::mutate(time = dayhour + dayminute/60,
-                  value = round(value, digits = 1)) %>%
+                  value = round(value, digits = digits)) %>%
     dplyr::arrange(weekday, time)
 
   plot <- ggplot2::ggplot(df.plot, ggplot2::aes(x = time,
