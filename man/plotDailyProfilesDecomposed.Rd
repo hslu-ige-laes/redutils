@@ -9,7 +9,8 @@ plotDailyProfilesDecomposed(
   locTimeZone = "UTC",
   main = "Daily Profiles - Decomposed",
   ylab = "delta Energy Consumption",
-  k = 672
+  k = 672,
+  digits = 1
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ plotDailyProfilesDecomposed(
 \item{ylab}{y-axis title, default "delta Energy Consumption"}
 
 \item{k}{Amount of samples for the rolling window used for the decomosition of the trend component, default 672 which corresponds to 7 days}
+
+\item{digits}{Number of digits for mouse-hover text, default 1 digit e.g. 10.3}
 }
 \value{
 Returns a ggplot object
