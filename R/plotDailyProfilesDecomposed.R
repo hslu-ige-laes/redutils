@@ -126,7 +126,7 @@ plotDailyProfilesDecomposed <- function(data,
   # prepare data for plot
   df.plot <- df.final %>%
     dplyr::mutate(time = dayhour + dayminute/60,
-                  value = round(value, digits = digits)) %>%
+                  value = round(value, digits)) %>%
     dplyr::arrange(weekday, time)
 
   plot <- ggplot2::ggplot(df.plot, ggplot2::aes(x = time,
