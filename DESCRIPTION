@@ -1,6 +1,6 @@
 Package: redutils
 Title: Utility Functions for the Analysis and Visualization of Comfort and Energy Data in R
-Version: 0.0.2
+Version: 0.0.4
 Author: person("Reto", "Marek", email = "reto.marek@hslu.ch", role = c("aut", "cre"))
 Maintainer: Reto Marek <reto.marek@hslu.ch>
 Description: The R package 'redutils' provides often used functions and plots to analyze and visualize energy- and comfort related data. These functions and plots reduce the complexity of the analysis and visualization task.
