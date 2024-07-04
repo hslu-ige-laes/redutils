@@ -22,5 +22,5 @@ x <- as.Date("2019-04-01")
 getSeason(x) #"Spring"
 
 x <- as.Date("2019-04-01")
-getSeason(x, seasonlab = c("Winter","FrÃ¼hling","Sommer","Herbst")) #"FrÃ¼hling"
+getSeason(x, seasonlab = c("Winter","Frühling","Sommer","Herbst")) #"Frühling"
 }

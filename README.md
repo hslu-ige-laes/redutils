@@ -141,6 +141,15 @@ Plot a D3 Mollier hx Diagram with scatter plot and comfort zone.
 
 Hint: varoius settings can get changed via function arguments.
 
+
+## Package creation
+
+Execute:
+``` r
+devtools::check()
+devtools::build()
+```
+
 <hr>
 
 **Disclaimer**<br> The authors decline any liability or responsibility

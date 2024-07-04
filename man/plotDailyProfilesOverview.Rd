@@ -10,7 +10,8 @@ plotDailyProfilesOverview(
   main = "Daily Profiles Overview by Weekday and Season",
   ylab = "Energy Consumption (kWh/h)",
   col = "black",
-  confidence = 95
+  confidence = 95,
+  func = "sum"
 )
 }
 \arguments{
@@ -24,7 +25,9 @@ plotDailyProfilesOverview(
 
 \item{col}{Line colour of median value, default "black"}
 
-\item{confidence}{Confidence interval for upper ribbon in percent (lower is calculated automatically), default 95 percent"}
+\item{confidence}{Confidence interval for upper ribbon in percent (lower is calculated automatically), default 95 percent}
+
+\item{func}{Function for data aggregation per hour, either "sum", "mean" or "median", default "sum"}
 }
 \value{
 Returns a ggplot object
