@@ -3,7 +3,8 @@ plotDailyProfilesOverview <- function(data,
                                       main = "Daily Profiles Overview by Weekday and Season",
                                       ylab = "Energy Consumption (kWh/h)",
                                       col = "black",
-                                      confidence = 95.0){
+                                      confidence = 95.0,
+																			func = "sum"){
   #' Plot Daily Profiles Overview
   #'
   #' Plot a Graph with Daily Energy Consumption Profiles by Weekday and Season
@@ -12,7 +13,8 @@ plotDailyProfilesOverview <- function(data,
   #' @param main Main title of plot, default "Before/After Optimization"
   #' @param ylab y-axis title, default "Energy Consumption (kWh/month)"
   #' @param col Line colour of median value, default "black"
-  #' @param confidence Confidence interval for upper ribbon in percent (lower is calculated automatically), default 95 percent"
+  #' @param confidence Confidence interval for upper ribbon in percent (lower is calculated automatically), default 95 percent
+	#' @param func Function for data aggregation per hour, either "sum", "mean" or "median", default "sum"
   #'
   #' @return Returns a ggplot object
   #' @importFrom lubridate parse_date_time floor_date hour wday
@@ -31,7 +33,13 @@ plotDailyProfilesOverview <- function(data,
   checkmate::assertString(ylab)
   checkmate::assertString(col)
   checkmate::assertNumber(confidence, lower = 50.0, upper = 100.0)
-
+	checkmate::assert_choice(func, choices = c("sum", "mean", "median"))
+	
+	# Determine the summarise function based on the parameter
+  aggregation_func <- switch(func,
+                           sum = sum,
+                           mean = mean,
+                           median = median)
 
   # function code
   colnames(data) <- c("timestamp", "value")
@@ -42,8 +50,8 @@ plotDailyProfilesOverview <- function(data,
   data$hour <- as.POSIXct(lubridate::floor_date(data$timestamp,"hours"), tz = locTimeZone)
 
   df.h <- data %>%
-    dplyr::group_by(hour)%>%
-    dplyr::summarise(value=sum(value)) %>%
+    dplyr::group_by(hour) %>%
+    dplyr::summarise(value = aggregation_func(value)) %>%
     dplyr::ungroup()
 
   if(.Platform$OS.type == "windows"){
