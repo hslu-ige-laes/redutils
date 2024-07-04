@@ -96,7 +96,7 @@ plotDailyProfilesOverview <- function(data,
   plot <- ggplot2::ggplot(df.h) +
     ggplot2::geom_ribbon(ggplot2::aes(x = dayhour, ymin = valueLower, ymax = valueUpper), fill = "darkgrey", alpha = 0.7) +
     ggplot2::geom_line(ggplot2::aes(x = dayhour, y = valueMedian), color = col, alpha = 0.5) +
-    ggplot2::labs(x = "\nHour of day", y = paste0(ylab, "\n")) +
+    ggplot2::labs(x = paste0(xlab, "\n"), y = paste0(ylab, "\n")) +
     ggplot2::facet_grid(season~weekday) +
     ggplot2::theme_minimal() +
     ggplot2::theme(axis.text.x = ggplot2::element_text(colour = "grey50", size = 8, hjust = 0.5, vjust = 0.5, face = "plain")) +
