@@ -2,9 +2,12 @@ plotDailyProfilesOverview <- function(data,
                                       locTimeZone = "UTC",
                                       main = "Daily Profiles Overview by Weekday and Season",
                                       ylab = "Energy Consumption (kWh/h)",
+																			xlab = "Energy Consumption (kWh/h)",
                                       col = "black",
                                       confidence = 95.0,
-																			func = "sum"){
+																			func = "sum",
+																			seasonlab = c("Winter","Spring","Summer","Fall")
+																			){
   #' Plot Daily Profiles Overview
   #'
   #' Plot a Graph with Daily Energy Consumption Profiles by Weekday and Season
@@ -12,9 +15,11 @@ plotDailyProfilesOverview <- function(data,
   #' @param locTimeZone Time zone of timestamp, default "UTC"
   #' @param main Main title of plot, default "Before/After Optimization"
   #' @param ylab y-axis title, default "Energy Consumption (kWh/month)"
+  #' @param xlab x-axis title, default "Hour of day"
   #' @param col Line colour of median value, default "black"
   #' @param confidence Confidence interval for upper ribbon in percent (lower is calculated automatically), default 95 percent
 	#' @param func Function for data aggregation per hour, either "sum", "mean" or "median", default "sum"
+  #' @param seasonlab Season labels, concatenated strings with 4 seasons, default c("Winter","Spring","Summer","Fall")
   #'
   #' @return Returns a ggplot object
   #' @importFrom lubridate parse_date_time floor_date hour wday
@@ -34,7 +39,7 @@ plotDailyProfilesOverview <- function(data,
   checkmate::assertString(col)
   checkmate::assertNumber(confidence, lower = 50.0, upper = 100.0)
 	checkmate::assert_choice(func, choices = c("sum", "mean", "median"))
-	
+
 	# Determine the summarise function based on the parameter
   aggregation_func <- switch(func,
                            sum = sum,
@@ -62,7 +67,7 @@ plotDailyProfilesOverview <- function(data,
                                               abbr = TRUE,
                                               week_start = getOption("lubridate.week.start", 1)),
                     dayhour = lubridate::hour(hour),
-                    season = redutils::getSeason(hour)
+                    season = redutils::getSeason(hour, seasonlab=seasonlab)
       )
   } else {
     df.h <- df.h %>%
@@ -72,14 +77,14 @@ plotDailyProfilesOverview <- function(data,
                                               abbr = TRUE,
                                               week_start = getOption("lubridate.week.start", 1)),
                     dayhour = lubridate::hour(hour),
-                    season = redutils::getSeason(hour)
+                    season = redutils::getSeason(hour, seasonlab=seasonlab)
       )
   }
 
 
   # create factors for correct order in plot
   # df.h$weekday <- factor(df.h$weekday, c("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday", "Sunday"))
-  df.h$season <- factor(df.h$season, c("Spring","Summer","Fall","Winter"))
+  df.h$season <- factor(df.h$season, seasonlab)
 
   df.h <- df.h %>%
     dplyr::group_by(season, weekday, dayhour) %>%

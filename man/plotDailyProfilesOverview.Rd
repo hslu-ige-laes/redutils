@@ -9,9 +9,11 @@ plotDailyProfilesOverview(
   locTimeZone = "UTC",
   main = "Daily Profiles Overview by Weekday and Season",
   ylab = "Energy Consumption (kWh/h)",
+  xlab = "Energy Consumption (kWh/h)",
   col = "black",
   confidence = 95,
-  func = "sum"
+  func = "sum",
+  seasonlab = c("Winter", "Spring", "Summer", "Fall")
 )
 }
 \arguments{
@@ -23,11 +25,15 @@ plotDailyProfilesOverview(
 
 \item{ylab}{y-axis title, default "Energy Consumption (kWh/month)"}
 
+\item{xlab}{x-axis title, default "Hour of day"}
+
 \item{col}{Line colour of median value, default "black"}
 
 \item{confidence}{Confidence interval for upper ribbon in percent (lower is calculated automatically), default 95 percent}
 
 \item{func}{Function for data aggregation per hour, either "sum", "mean" or "median", default "sum"}
+
+\item{seasonlab}{Season labels, concatenated strings with 4 seasons, default c("Winter","Spring","Summer","Fall")}
 }
 \value{
 Returns a ggplot object
